@@ -1,8 +1,7 @@
-import {
-  CandyGraph,
+import CandyGraph, {
   createLinearScale,
   createCartesianCoordinateSystem,
-  createRectsFactory
+  createRects,
 } from 'candygraph';
 import './style.css'
 
@@ -11,8 +10,6 @@ const app = document.querySelector<HTMLDivElement>('#app')!
 app.innerHTML = '<canvas id="canvas"></canvas>'
 
 function plot(cg: CandyGraph) {
-  const createRects = createRectsFactory(cg);
-
   // Generate some x & y data.
   const rects = [];
   for (let x = 0; x <= 1; x += 0.1) {
@@ -48,7 +45,7 @@ function plot(cg: CandyGraph) {
 
   // Render the a line strip representing the x & y data, and axes.
   cg.render(coords, viewport, [
-    createRects(rects, { colors: [1, 0.5, 0.0, 1.0] }),
+    createRects(cg, rects, { colors: [1, 0.5, 0.0, 1.0] }),
   ]);
 
   // Copy the plot to a new canvas and add it to the document.
